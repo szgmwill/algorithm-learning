@@ -1,16 +1,22 @@
 class NQueensSolution : 
     def solveNQueens(self, n) :
         if n < 1: return []
+        # the final result, 2-deminsion array
         self.result = []
+        # store column index
         self.cols = set()
+        # store row+column 
         self.pie = set()
+        # store row-column
         self.na = set()
+        # start recursion
         self._DFS(n, 0, [])
         # generate the result strings
         result_print = self.generate_string(n)
         print(result_print)
     
     def _DFS(self, n, row, cur_col_index) :
+        # break condidtion
         if row >= n:
             self.result.append(cur_col_index)
             return
@@ -19,7 +25,8 @@ class NQueensSolution :
             if col in self.cols or row+col in self.pie or row-col in self.na:
                 # die
                 continue
-
+            
+            # add to the current die list
             self.cols.add(col)
             self.pie.add(row+col)
             self.na.add(row-col)
